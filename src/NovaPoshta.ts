@@ -1,7 +1,8 @@
-import axios from 'axios';
 import toCamelCase from './helpers/toCamelCase';
 import Schema from './Schema';
 import SchemaCallable from './SchemaCallable';
+import send from './send';
+
 
 const ENDPOINT = "https://api.novaposhta.ua/v2.0/json/";
 
@@ -17,7 +18,7 @@ export const initNovaPoshta = (apiKey: string = "") => {
                         model = toCamelCase(model, "upper");
 
 
-                        const res = axios.post(ENDPOINT, {
+                        const res = send(ENDPOINT, {
                             apiKey,
                             modelName: model,
                             calledMethod: method,
@@ -25,7 +26,14 @@ export const initNovaPoshta = (apiKey: string = "") => {
                         })
                         
                         return new Promise(done => {
-                            res.then(r => done(toCamelCase(r.data.data, "lower")))
+                            res.then(r => 
+                                done(
+                                    toCamelCase(
+                                        JSON.parse(r.responseText).data,
+                                        "lower"
+                                    )
+                                )
+                            )
                         }) as Promise<Schema[typeof model][typeof method]["ret"][]>
                     }
                 }
