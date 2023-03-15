@@ -8,7 +8,7 @@ const ENDPOINT = "https://api.novaposhta.ua/v2.0/json/";
 
 export type NovaPoshta = SchemaCallable;
 
-export const initNovaPoshta = (apiKey: string) => {
+export const initNovaPoshta = (apiKey: string = "") => {
     return new Proxy({} as SchemaCallable, {
         get: (_, model: string) => {
             return new Proxy({} as SchemaCallable[typeof model], {
