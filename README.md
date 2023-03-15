@@ -2,8 +2,6 @@
 
 [![npm version](https://badge.fury.io/js/novaposhtajs.svg)](https://badge.fury.io/js/novaposhtajs)
 
-novaposhtajs is a TypeScript SDK for the NovaPoshta API. This library provides a simple, efficient, and flexible way to interact with the NovaPoshta API using JavaScript/TypeScript. The naming style for models and arguments has been changed to lower camel case, making the library more consistent with JavaScript
-
 novaposhtajs is a TypeScript SDK for the NovaPoshta API. This library provides a simple, efficient, and flexible way to interact with the NovaPoshta API using JavaScript/TypeScript. The naming style for models and arguments has been changed to lower camel case, making the library more consistent with JavaScript style conventions.
 
 ## Features
