@@ -34,5 +34,19 @@ novaPoshta.address.getCities({ page: 1, limit: 10 })
   .catch(error => console.error(error));
 ```
 
+Export any response type
+```typescript
+const { AddressGetAreasResponse, initNovaPoshta } = require('novaposhtajs');
+
+function anyActionWithArea(area: AddressGetAreasResponse) {
+    console.log(area.ref, area.description);
+}
+
+const novaPoshta = initNovaPoshta();
+const areas = await novaPoshta.address.getAreas({});
+areas.map(area => anyActionWithArea(area))
+
+```
+
 ## License
 MIT
