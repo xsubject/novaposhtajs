@@ -2,7 +2,7 @@ import { ParamType } from "@ethersproject/abi";
 import axios from "axios";
 import * as cheerio from 'cheerio';
 import { appendFileSync, existsSync, rmSync } from "fs";
-import stringToUpperCamelCase from "../src/helpers/stringToUpperCamelCase";
+import toCamelCase from "../src/helpers/toCamelCase"
 
 type Req = {
     name: string,
@@ -144,10 +144,10 @@ async function main(startUrl: string) {
             return true
         }
     }).map(item => {
-        const paramsType = `export type ${item.modelName}${stringToUpperCamelCase(item.calledMethod!)}Request = {\n`+
+        const paramsType = `export type ${item.modelName}${toCamelCase(item.calledMethod!, "upper")}Request = {\n`+
             item.req?.map(r => `\t${stringToLowerCamelCase(r.name)}${!r.required?"?":""}: ${r.type}`).join("\n") +
         `\n}`
-        const retTypeType = `export type ${item.modelName}${stringToUpperCamelCase(item.calledMethod!)}Response = {\n`+
+        const retTypeType = `export type ${item.modelName}${toCamelCase(item.calledMethod!, "upper")}Response = {\n`+
             item.res?.map(r => `\t${stringToLowerCamelCase(r.name)}: ${r.type}`).join("\n") +
         `\n}`
         types.push(paramsType);
@@ -168,8 +168,8 @@ async function main(startUrl: string) {
         }
         
         w(`\n\t\t${item.calledMethod}: {`+
-            `\n\t\t\tparams: ${item.modelName}${stringToUpperCamelCase(item.calledMethod!)}Request,` +
-            `\n\t\t\tret: ${item.modelName}${stringToUpperCamelCase(item.calledMethod!)}Response`
+            `\n\t\t\tparams: ${item.modelName}${toCamelCase(item.calledMethod!, "upper")}Request,` +
+            `\n\t\t\tret: ${item.modelName}${toCamelCase(item.calledMethod!, "upper")}Response`
         +`\n\t\t}`)
         
         
