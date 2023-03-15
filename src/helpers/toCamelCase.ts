@@ -1,5 +1,10 @@
 function toCamelCase<T>(x: T, format: "lower" | "upper"): T {
-    const fn = format === "upper" ? "toUpperCase" : "toLowerCase";
+    const fn = format === "upper" 
+                ? "toUpperCase" : 
+                    format === "lower" 
+                        ? "toLowerCase" :
+                        undefined;
+    if(fn === undefined) throw new Error("format must be `lower` or `upper`");
 
     if(typeof x === "string") {
         if(x.length == 0) return x;
