@@ -1,8 +1,9 @@
 {
   "name": "novaposhtajs",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "description": "",
   "main": "build/index.js",
+  "homepage": "https://github.com/xsubject/novaposhtajs",
 
   "scripts": {
     "prepare": "tsc",
@@ -10,7 +11,7 @@
     "start": "ts-node src/index.ts",
     "schema": "ts-node scripts/parseSchema.ts"
   },
-  "keywords": [],
+  "keywords": ["novaposhta", "nova poshta", "np", "poshta", "nova", "novaposhtajs", "novaposhtats", "npjs", "npts"],
   "author": "",
   "license": "MIT",
   "husky": {
