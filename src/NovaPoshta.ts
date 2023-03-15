@@ -1,4 +1,5 @@
 import axios from 'axios';
+import objectToLowerCamelCase from './helpers/objectToLowerCamelCase';
 import objectToUpperCamelCase from './helpers/objectToUpperCamelCase';
 import stringToUpperCamelCase from './helpers/stringToUpperCamelCase';
 import Schema from './Schema';
@@ -26,8 +27,8 @@ export const initNovaPoshta = (apiKey: string = "") => {
                         })
                         
                         return new Promise(done => {
-                            res.then(r => done(r.data.data))
-                        }) as Promise<Schema[typeof model][typeof method]["ret"]>
+                            res.then(r => done(objectToLowerCamelCase(r.data.data)))
+                        }) as Promise<Schema[typeof model][typeof method]["ret"][]>
                     }
                 }
             })
